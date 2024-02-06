@@ -1,10 +1,11 @@
 import Box from "@mui/material/Box";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import fallbackImage from "../assets/NoData.svg";
 import { GridColDef } from "@mui/x-data-grid";
+import { Skeleton } from "@mui/material";
 
-type Props = {
+type DataGridProps = {
   rows: any[];
   columns: GridColDef[];
   setPage?: React.Dispatch<React.SetStateAction<number>>;
@@ -14,9 +15,11 @@ type Props = {
   isFetching?: boolean;
 };
 
-/**
- * @param showQuickFilter  if true adds search field in above the table */
-export default function CustomDataGrid({
+type LoaderProps = {
+  columns: GridColDef[];
+};
+
+export const CustomDataGrid = ({
   rows = [],
   columns,
   setPage,
@@ -24,7 +27,7 @@ export default function CustomDataGrid({
   isFetching,
   hidePagination,
   apiRef,
-}: Props) {
+}: DataGridProps) => {
   const [paginationModel, setPaginationModel] = useState({
     page: 0,
     pageSize: 10,
@@ -90,7 +93,20 @@ export default function CustomDataGrid({
       />
     </Box>
   );
-}
+};
+
+export const DataGridLoader = ({ columns }: LoaderProps) => {
+  columns = columns.map((item) => {
+    return { ...item, renderCell: () => <Skeleton width="70%" /> };
+  });
+  const rows = [...Array(10)].map((item, index) => ({ id: index }));
+
+  return (
+    <>
+      <CustomDataGrid columns={columns} rows={rows} />
+    </>
+  );
+};
 
 /* function EmptyTable() {
   return (
