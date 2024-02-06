@@ -5,11 +5,11 @@ import CircularProgress from "@mui/material/CircularProgress";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
-import { CustomInput } from "../../components/CustomInput";
+import { CustomInput } from "../../components/ui/CustomInput";
 import { setLoginStatus, useLoginMutation } from "../../redux/api/authApi";
 import { useDispatch } from "react-redux";
 import { makeStyles } from "@mui/styles";
-import { failureToast } from "../../components/Toast";
+import { failureToast } from "../../components/ui/Toast";
 
 interface LoginType {
   email: string;
@@ -34,7 +34,6 @@ const Login = () => {
     handleSubmit,
     formState: { errors },
     control,
-    watch,
   } = useForm({
     mode: "onBlur",
     defaultValues,
