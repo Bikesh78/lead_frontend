@@ -26,8 +26,19 @@ export const leadApi = createApi({
       }),
       invalidatesTags: (res, error) => (error ? [] : ["Leads"]),
     }),
+    deleteLead: builder.mutation({
+      query: (id) => ({
+        url: `/api/lead/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: (res, error) => (error ? [] : ["Leads"]),
+    }),
   }),
 });
 
-export const { useGetLeadsQuery, usePostLeadsMutation, useUpdateLeadMutation } =
-  leadApi;
+export const {
+  useGetLeadsQuery,
+  usePostLeadsMutation,
+  useUpdateLeadMutation,
+  useDeleteLeadMutation,
+} = leadApi;

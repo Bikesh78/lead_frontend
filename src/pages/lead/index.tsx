@@ -4,6 +4,7 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
 import {
+  useDeleteLeadMutation,
   useGetLeadsQuery,
   usePostLeadsMutation,
   useUpdateLeadMutation,
@@ -69,6 +70,7 @@ export default function Lead() {
   } = useGetLeadsQuery(page);
   const [postLead, { isLoading: postLoading }] = usePostLeadsMutation();
   const [updateLead, { isLoading: updateLoading }] = useUpdateLeadMutation();
+  const [deleteLead, { isLoading: deleteLoading }] = useDeleteLeadMutation();
 
   const closeModal = () => {
     handleClose("addForm");
@@ -77,7 +79,6 @@ export default function Lead() {
   };
 
   const handleEdit = (data: any) => {
-    console.log("data", data);
     reset({
       name: data?.lead_name,
       email: data?.email,
@@ -86,6 +87,16 @@ export default function Lead() {
       id: data?.id,
     });
     handleOpen("editForm");
+  };
+
+  const handleDelete = (id: any) => {
+    deleteLead(id)
+      .unwrap()
+      .then(() => infoToast("Delted successfully"))
+      .catch((error) => {
+        console.log("error", error);
+        failureToast(error?.data?.error);
+      });
   };
 
   const submitHandler = (data: any) => {
@@ -166,10 +177,12 @@ export default function Lead() {
       headerName: "Action",
       sortable: false,
       renderCell: (params) => {
-        console.log("params", params);
         return (
           <>
-            <ActionButton handleEdit={() => handleEdit(params?.row)} />
+            <ActionButton
+              handleEdit={() => handleEdit(params?.row)}
+              handleDelete={() => handleDelete(params?.row?.id)}
+            />
           </>
         );
       },
