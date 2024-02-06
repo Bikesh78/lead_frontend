@@ -12,13 +12,22 @@ export const leadApi = createApi({
     }),
     postLeads: builder.mutation({
       query: (data) => ({
-        url: `/admin/site-setting-contact-banner-section`,
+        url: `/api/lead`,
         method: "POST",
         body: data,
       }),
-      invalidatesTags: ["Leads"],
+      invalidatesTags: (res, error) => (error ? [] : ["Leads"]),
+    }),
+    updateLead: builder.mutation({
+      query: ({ data, id }) => ({
+        url: `/api/lead/${id}`,
+        method: "PUT",
+        body: data,
+      }),
+      invalidatesTags: (res, error) => (error ? [] : ["Leads"]),
     }),
   }),
 });
 
-export const { useGetLeadsQuery, usePostLeadsMutation } = leadApi;
+export const { useGetLeadsQuery, usePostLeadsMutation, useUpdateLeadMutation } =
+  leadApi;

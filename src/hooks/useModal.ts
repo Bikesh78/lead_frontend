@@ -1,12 +1,12 @@
 import { useCallback, useState } from "react";
 
 const useModal = () => {
-  const [modals, setModals] = useState({});
+  const [modals, setModals] = useState<any>({});
   const [row, setRow] = useState();
 
-  const handleOpen = useCallback((type: any, row: any) => {
+  const handleOpen = useCallback((type: string, row?: any) => {
     setRow(row);
-    setModals((prev) => {
+    setModals((prev: any) => {
       return {
         ...prev,
         [type]: true,
@@ -14,8 +14,8 @@ const useModal = () => {
     });
   }, []);
 
-  const handleClose = useCallback((type: any) => {
-    setModals((prev) => {
+  const handleClose = useCallback((type: string) => {
+    setModals((prev: any) => {
       return {
         ...prev,
         [type]: false,

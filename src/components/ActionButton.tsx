@@ -2,7 +2,11 @@ import { IconButton, Menu, MenuItem, styled } from "@mui/material";
 import { MoreVert } from "@mui/icons-material";
 import { useState } from "react";
 
-export const ActionButton = () => {
+type Props = {
+  handleEdit: (data: any) => void;
+};
+
+export const ActionButton = ({ handleEdit }: Props) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
@@ -64,10 +68,11 @@ export const ActionButton = () => {
         }}
       >
         <MenuItem
-        // onClick={() => {
-        //   handleEdit(params);
-        //   handleClose();
-        // }}
+          // onClick={() => {
+          //   handleEdit(params);
+          //   handleClose();
+          // }}
+          onClick={handleEdit}
         >
           Edit
         </MenuItem>
