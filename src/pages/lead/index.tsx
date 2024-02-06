@@ -1,7 +1,4 @@
 import { Box, Button, IconButton, Menu, MenuItem } from "@mui/material";
-import { useForm } from "react-hook-form";
-import * as yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
 import { useEffect, useState } from "react";
 import { useGetLeadsQuery } from "../../redux/api/leadApi";
 import useModal from "../../hooks/useModal";
@@ -11,29 +8,16 @@ import {
   CustomDataGrid,
 } from "../../components/CustomDataGrid";
 import dayjs from "dayjs";
-import { styled } from "@mui/styles";
-import { MoreVert } from "@mui/icons-material";
+import { ActionButton } from "../../components/ActionButton";
 
 export default function Lead() {
   const [page, setPage] = useState(1);
-  const [anchorEl, setAnchorEl] = useState(null);
-  const open = Boolean(anchorEl);
-
-  const handleClick = (event: any) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
 
   const {
     data,
     isLoading: queryLoading,
     isFetching: queryFetching,
-    error: queryError,
   } = useGetLeadsQuery(page);
-  console.log("data", data);
 
   const columns: GridColDef[] = [
     {
@@ -77,40 +61,7 @@ export default function Lead() {
       renderCell: (params) => {
         return (
           <>
-            <IconButton
-              className="card-menu-btn"
-              aria-label="menu"
-              aria-controls={open ? "long-menu" : undefined}
-              aria-expanded={open ? "true" : undefined}
-              aria-haspopup="true"
-              onClick={(e: any) => {
-                e.stopPropagation();
-                handleClick(e);
-              }}
-              role="button"
-            >
-              <MoreVert />
-            </IconButton>
-
-            <StyledMenu
-              // id={slug}
-              anchorEl={anchorEl}
-              open={open}
-              onClose={handleClose}
-              MenuListProps={{
-                "aria-labelledby": "basic-button",
-              }}
-              onClick={(e: React.MouseEvent<HTMLElement>) =>
-                e.stopPropagation()
-              }
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-            >
-              <MenuItem>Edit</MenuItem>
-              <MenuItem>Delete</MenuItem>
-            </StyledMenu>
+            <ActionButton />
           </>
         );
       },
@@ -151,33 +102,3 @@ export default function Lead() {
     </>
   );
 }
-
-const StyledMenu = styled((props) => (
-  <Menu
-    elevation={0}
-    anchorOrigin={{
-      vertical: "bottom",
-      horizontal: "center",
-    }}
-    transformOrigin={{
-      vertical: "top",
-      horizontal: "center",
-    }}
-    {...props}
-  />
-))(({ theme }) => ({
-  "& .MuiPaper-root": {
-    borderRadius: 6,
-    marginTop: theme.spacing(1.3),
-    // minWidth: 180,
-    color:
-      theme.palette.mode === "light"
-        ? "rgb(55, 65, 81)"
-        : theme.palette.grey[300],
-    boxShadow:
-      "rgb(255, 255, 255) 0px 0px 0px 0px, rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px",
-    "& .MuiMenu-list": {
-      padding: "4px 0",
-    },
-  },
-}));
