@@ -1,7 +1,7 @@
 import { createTheme, lighten } from "@mui/material/styles";
 const mainColor = localStorage.getItem("themeColor") || "#4559BD";
 
-const theme = createTheme({
+export const theme: any = createTheme({
   palette: {
     primary: {
       main: mainColor,
@@ -67,16 +67,6 @@ const theme = createTheme({
           fontSize: "12px",
         },
       },
-      variants: [
-        {
-          props: { variant: "active" },
-          style: {
-            textTransform: "none",
-            border: `1px solid #06C270`,
-            color: "#06C270",
-          },
-        },
-      ],
     },
     MuiTooltip: {
       styleOverrides: {
@@ -291,4 +281,3 @@ const theme = createTheme({
     },
   },
 });
-export default theme;

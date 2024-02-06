@@ -1,11 +1,12 @@
-import { ThemeProvider } from "@mui/material/styles";
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { Provider } from "react-redux";
+import { ThemeProvider } from "@mui/material/styles";
+
 import App from "./App.tsx";
 import "./index.css";
-import { Provider, useDispatch } from "react-redux";
 import store from "./redux/store";
-import theme from "./theme/index.js";
+import { theme } from "./theme/index.ts";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>

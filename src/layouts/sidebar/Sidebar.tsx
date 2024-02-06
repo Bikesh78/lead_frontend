@@ -5,20 +5,18 @@ import {
   ListItemText,
   Box,
 } from "@mui/material";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import CallOutlinedIcon from "@mui/icons-material/CallOutlined";
 import AssignmentOutlinedIcon from "@mui/icons-material/AssignmentOutlined";
 
-export const SIDEBAR_ARRAY = [
+const SIDEBAR_ARRAY = [
   { label: "Home", url: "/" },
   { label: "Lead", url: "/lead" },
   { label: "Interaction", url: "/interaction" },
 ];
 
 const Sidebar = () => {
-  const location = useLocation();
-
   return (
     <Box
       sx={{
