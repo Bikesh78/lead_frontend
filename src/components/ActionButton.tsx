@@ -3,11 +3,12 @@ import { MoreVert } from "@mui/icons-material";
 import { useState } from "react";
 
 type Props = {
-  handleEdit?: (data: any) => void;
-  handleDelete?: (data: any) => void;
+  handleEdit: () => void;
+  handleDelete: () => void;
+  data?: any;
 };
 
-export const ActionButton = ({ handleEdit, handleDelete }: Props) => {
+export const ActionButton = ({ handleEdit, handleDelete, data }: Props) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
@@ -68,8 +69,22 @@ export const ActionButton = ({ handleEdit, handleDelete }: Props) => {
           },
         }}
       >
-        <MenuItem onClick={handleEdit}>Edit</MenuItem>
-        <MenuItem onClick={handleDelete}>Delete</MenuItem>
+        <MenuItem
+          onClick={() => {
+            handleEdit();
+            setAnchorEl(null);
+          }}
+        >
+          Edit
+        </MenuItem>
+        <MenuItem
+          onClick={() => {
+            handleDelete();
+            setAnchorEl(null);
+          }}
+        >
+          Delete
+        </MenuItem>
       </Menu>
     </>
   );

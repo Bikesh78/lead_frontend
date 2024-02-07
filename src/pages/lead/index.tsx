@@ -22,6 +22,7 @@ import { CustomInput } from "../../components/ui/CustomInput";
 import { makeStyles } from "@mui/styles";
 import { failureToast, infoToast } from "../../components/ui/Toast";
 import { CustomSelect } from "../../components/ui/CustomSelect";
+import { ConfirmationModal } from "../../components/CofirmationModal";
 
 type LeadType = {
   name: string;
@@ -75,10 +76,11 @@ export default function Lead() {
   const closeModal = () => {
     handleClose("addForm");
     handleClose("editForm");
+    handleClose("deleteModal");
     reset(defaultValues);
   };
 
-  const handleEdit = (data: any) => {
+  const handleEdit = (data: any): void => {
     reset({
       name: data?.lead_name,
       email: data?.email,
@@ -89,10 +91,13 @@ export default function Lead() {
     handleOpen("editForm");
   };
 
-  const handleDelete = (id: any) => {
-    deleteLead(id)
+  const handleDelete = (row: any) => {
+    deleteLead(row?.id)
       .unwrap()
-      .then(() => infoToast("Delted successfully"))
+      .then(() => {
+        infoToast("Deleted successfully");
+        closeModal();
+      })
       .catch((error) => {
         console.log("error", error);
         failureToast(error?.data?.error);
@@ -100,7 +105,7 @@ export default function Lead() {
   };
 
   const submitHandler = (data: any) => {
-    console.log("data", data);
+    // console.log("data", data);
     const payload = {
       name: data?.name,
       email: data?.email,
@@ -121,8 +126,8 @@ export default function Lead() {
           failureToast(error?.data?.error);
         });
     } else if (modals.editForm) {
-      payload.id = data?.id;
-      updateLead({ data: payload, id: data?.id })
+      // payload.id = data?.id;
+      updateLead({ data: { ...payload, id: data?.id }, id: data?.id })
         .unwrap()
         .then((res) => {
           console.log("res", res);
@@ -135,7 +140,7 @@ export default function Lead() {
         });
     }
   };
-  console.log("modals", modals);
+  // console.log("modals", modals);
 
   const columns: GridColDef[] = [
     {
@@ -181,7 +186,8 @@ export default function Lead() {
           <>
             <ActionButton
               handleEdit={() => handleEdit(params?.row)}
-              handleDelete={() => handleDelete(params?.row?.id)}
+              handleDelete={() => handleOpen("deleteModal", params?.row)}
+              data={params?.row}
             />
           </>
         );
@@ -286,12 +292,15 @@ export default function Lead() {
             </Box>
           </form>
         </Box>
-        {/* <PositionForm
-          methods={methods}
-          handleClose={closeFormModal}
-          isEditForm={Boolean(modals.editForm)}
-        /> */}
       </CustomModal>
+
+      <ConfirmationModal
+        open={Boolean(modals.deleteModal)}
+        handleClose={closeModal}
+        handleAction={() => handleDelete(row)}
+        title="Are you sure you want to delete?"
+        isLoading={deleteLoading}
+      />
     </>
   );
 }

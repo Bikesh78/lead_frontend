@@ -9,14 +9,14 @@ import {
 } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import CloseIcon from "@mui/icons-material/Close";
-import { ReactNode } from "react";
+import React, { ReactNode } from "react";
 
 type ModalProps = {
   children: ReactNode;
   open: boolean;
   handleClose: any;
   modalTitle: string;
-  // width?: string;
+  width?: string;
 };
 
 export const CustomModal: React.FC<ModalProps> = ({
@@ -24,7 +24,7 @@ export const CustomModal: React.FC<ModalProps> = ({
   open,
   handleClose,
   modalTitle,
-  // width = "500px",
+  width = "500px",
 }) => {
   const classes = useStyles();
 
@@ -43,7 +43,7 @@ export const CustomModal: React.FC<ModalProps> = ({
             top: `50%`,
             left: `50%`,
             transform: "translate(-50%, -50%)",
-            width: "500px",
+            width: width || "500px",
           }}
         >
           {modalTitle && (
@@ -84,7 +84,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "white",
     borderRadius: "3px",
     overflow: "hidden",
-    boxShadow: theme.shadows[5],
+    // boxShadow: theme.shadows[5],
     "&:focus-visible": {
       outline: "none",
     },
@@ -93,7 +93,7 @@ const useStyles = makeStyles((theme) => ({
     position: "sticky",
     top: 0,
     zIndex: 1000,
-    backgroundColor: theme.palette.primary.main,
+    backgroundColor: "white",
     padding: "1rem 2rem",
     color: "#F9FAFD",
     display: "flex",

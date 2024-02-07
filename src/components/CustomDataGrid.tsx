@@ -46,6 +46,54 @@ export const CustomDataGrid = ({
         "& .MuiDataGrid-overlayWrapper": {
           minHeight: isFetching ? "" : "450px",
         },
+        // "& .MuiDataGrid-columnHeaders": {
+        //   borderBlock: "1px solid #9D9CAF !important",
+        //   borderRadius: "0px",
+        //   outline: "none !important",
+        // },
+        // "& .MuiDataGrid-columnHeaderTitleContainer": {
+        //   textTransform: "uppercase",
+        //   fontSize: "12px",
+        //   paddingBlock: "0px !important",
+        // },
+        // "& .MuiDataGrid-columnHeaderTitle": {
+        //   fontWeight: "600",
+        // },
+        // "& .MuiDataGrid-menuIcon": {
+        //   // "& .MuiButtonBase-root": {
+        //   //   color: "white",
+        //   // },
+        // },
+        // "& .MuiDataGrid-iconButtonContainer": {
+        //   "& .MuiButtonBase-root": {
+        //     color: "white",
+        //   },
+        // },
+        // "& .MuiDataGrid-columnSeparator": {
+        //   display: "none",
+        // },
+        // "& .MuiDataGrid-toolbarContainer": {
+        //   marginBlock: "10px",
+        //   "& .MuiInputBase-root": {
+        //     border: "1px solid rgba(0,0,0,0.23)",
+        //     borderRadius: "4px",
+        //     padding: "4px",
+        //     "&:before": {
+        //       borderBottom: "none !important",
+        //     },
+        //     "&:after": {
+        //       display: "none !important",
+        //     },
+        //     // "& button": {
+        //     //   display: "none",
+        //     // },
+        //     "&:hover": {
+        //       "&:before": {
+        //         borderBottom: "none !important",
+        //       },
+        //     },
+        //   },
+        // },
       }}
     >
       <DataGrid

@@ -11,43 +11,43 @@ export const theme: any = createTheme({
     secondary: {
       main: "#4559BD",
     },
-    text: {
-      main: "#121127",
-      light: "#b1b1b1",
-      medium: "#4C4B63",
-      hover: "#007a6f",
-      active: "#25d5e4",
-    },
-    dark: {
-      200: "#E5E5EB",
-      400: "#bdbdc7",
-      700: "#383751",
-    },
-    primaryBtn: {
-      main: "#017054",
-      contrastText: "#fff",
-    },
-    grayBackground: {
-      default: "#F7F8FA",
-    },
+    // text: {
+    //   main: "#121127",
+    //   light: "#b1b1b1",
+    //   medium: "#4C4B63",
+    //   hover: "#007a6f",
+    //   active: "#25d5e4",
+    // },
+    // dark: {
+    //   200: "#E5E5EB",
+    //   400: "#bdbdc7",
+    //   700: "#383751",
+    // },
+    // primaryBtn: {
+    //   main: "#017054",
+    //   contrastText: "#fff",
+    // },
+    // grayBackground: {
+    //   default: "#F7F8FA",
+    // },
     background: {
       default: "#FFF",
     },
-    blue: {
-      50: "#E1F5FF",
-      800: "#4559BD",
-    },
-    cyan: {
-      600: "#3EC4D5",
-      900: "#2A7576",
-    },
+    // blue: {
+    //   50: "#E1F5FF",
+    //   800: "#4559BD",
+    // },
+    // cyan: {
+    //   600: "#3EC4D5",
+    //   900: "#2A7576",
+    // },
     common: {
       black: "#232323",
       white: "#fff",
     },
-    input: {
-      main: "#f6f6f6",
-    },
+    // input: {
+    //   main: "#f6f6f6",
+    // },
     error: { main: "#FF3B3B" },
     info: { main: "#0063F7" },
     success: { main: "#06C270" },
@@ -138,73 +138,73 @@ export const theme: any = createTheme({
         },
       },
     },
-    MuiDataGrid: {
-      styleOverrides: {
-        root: {
-          border: "none !important",
-          background: "#fcfcfc ",
-
-          "& .MuiDataGrid-cell, & .MuiDataGrid-footerContainer, & .MuiButtonBase-root ":
-            {
-              fontSize: "12px",
-              "&:focus, &:focus-within": {
-                outline: "none",
-              },
-            },
-        },
-        columnHeaders: {
-          borderBlock: "1px solid #9D9CAF !important",
-          borderRadius: "0px",
-          outline: "none !important",
-          // background: mainColor,
-          // color: "white",
-          // fontSize: "16px",
-        },
-        columnHeaderTitleContainer: {
-          textTransform: "uppercase",
-          fontSize: "12px",
-          paddingBlock: "0px !important",
-        },
-        columnHeaderTitle: {
-          fontWeight: "600",
-        },
-        menuIcon: {
-          // "& .MuiButtonBase-root": {
-          //   color: "white",
-          // },
-        },
-        iconButtonContainer: {
-          "& .MuiButtonBase-root": {
-            color: "white",
-          },
-        },
-        columnSeparator: {
-          display: "none",
-        },
-        toolbarContainer: {
-          marginBlock: "10px",
-          "& .MuiInputBase-root": {
-            border: "1px solid rgba(0,0,0,0.23)",
-            borderRadius: "4px",
-            padding: "4px",
-            "&:before": {
-              borderBottom: "none !important",
-            },
-            "&:after": {
-              display: "none !important",
-            },
-            // "& button": {
-            //   display: "none",
-            // },
-            "&:hover": {
-              "&:before": {
-                borderBottom: "none !important",
-              },
-            },
-          },
-        },
-      },
-    },
+    // MuiDataGrid: {
+    //   styleOverrides: {
+    //     root: {
+    //       border: "none !important",
+    //       background: "#fcfcfc ",
+    //
+    //       "& .MuiDataGrid-cell, & .MuiDataGrid-footerContainer, & .MuiButtonBase-root ":
+    //         {
+    //           fontSize: "12px",
+    //           "&:focus, &:focus-within": {
+    //             outline: "none",
+    //           },
+    //         },
+    //     },
+    //     columnHeaders: {
+    //       borderBlock: "1px solid #9D9CAF !important",
+    //       borderRadius: "0px",
+    //       outline: "none !important",
+    //       // background: mainColor,
+    //       // color: "white",
+    //       // fontSize: "16px",
+    //     },
+    //     columnHeaderTitleContainer: {
+    //       textTransform: "uppercase",
+    //       fontSize: "12px",
+    //       paddingBlock: "0px !important",
+    //     },
+    //     columnHeaderTitle: {
+    //       fontWeight: "600",
+    //     },
+    //     menuIcon: {
+    //       // "& .MuiButtonBase-root": {
+    //       //   color: "white",
+    //       // },
+    //     },
+    //     iconButtonContainer: {
+    //       "& .MuiButtonBase-root": {
+    //         color: "white",
+    //       },
+    //     },
+    //     columnSeparator: {
+    //       display: "none",
+    //     },
+    //     toolbarContainer: {
+    //       marginBlock: "10px",
+    //       "& .MuiInputBase-root": {
+    //         border: "1px solid rgba(0,0,0,0.23)",
+    //         borderRadius: "4px",
+    //         padding: "4px",
+    //         "&:before": {
+    //           borderBottom: "none !important",
+    //         },
+    //         "&:after": {
+    //           display: "none !important",
+    //         },
+    //         // "& button": {
+    //         //   display: "none",
+    //         // },
+    //         "&:hover": {
+    //           "&:before": {
+    //             borderBottom: "none !important",
+    //           },
+    //         },
+    //       },
+    //     },
+    //   },
+    // },
     MuiIconButton: {
       styleOverrides: {
         root: {
