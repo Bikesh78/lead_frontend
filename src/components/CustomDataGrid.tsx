@@ -1,6 +1,6 @@
 import Box from "@mui/material/Box";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import fallbackImage from "../assets/NoData.svg";
 import { GridColDef } from "@mui/x-data-grid";
 import { Skeleton } from "@mui/material";
