@@ -1,21 +1,27 @@
 import { Box, CircularProgress, Grid, Paper } from "@mui/material";
-import { useGetLeadPerSourceQuery } from "../../redux/api/leadApi";
+import {
+  useGetLeadPerSourceQuery,
+  useGetLeadPerStatusQuery,
+} from "../../redux/api/leadApi";
 import { makeStyles } from "@mui/styles";
 import CustomBarCharts from "../../components/CustomBarChart";
+import CustomPieCharts from "../../components/CustomPieChart";
 
 export default function Overview() {
-  const styles = useStyles();
+  const { data: leadsPerSource, isLoading } = useGetLeadPerSourceQuery("");
+  const { data: leadsPerStatus, isLoading: queryLoading } =
+    useGetLeadPerStatusQuery("");
 
-  const {
-    data: leadsPerSource,
-    isLoading: queryLoading,
-    isFetching: queryFetching,
-  } = useGetLeadPerSourceQuery("");
-  console.log("leadsPerSource", leadsPerSource);
+  const pieCharData = leadsPerStatus?.data?.map((item: any) => {
+    let newObject = { name: "", status_count: 0 };
+    newObject.name = item.lead_status;
+    newObject.status_count = Number(item.status_count);
+    return newObject;
+  });
 
   return (
     <>
-      {queryLoading ? (
+      {isLoading || queryLoading ? (
         <Box
           sx={{
             display: "flex",
@@ -43,28 +49,19 @@ export default function Overview() {
               </Box>
             </Paper>
           </Grid>
+
+          <Grid item xs={6}>
+            <Paper variant="outlined" sx={{ padding: "15px" }}>
+              <Box sx={{ width: "100%", height: "400px" }}>
+                <CustomPieCharts
+                  title={"Lead Per Status"}
+                  data={pieCharData || []}
+                />
+              </Box>
+            </Paper>
+          </Grid>
         </Grid>
       )}
     </>
   );
 }
-
-const useStyles = makeStyles((theme) => ({
-  formContainer: {
-    padding: "10px 20px",
-    display: "flex",
-    columnGap: "10px",
-    alignItems: "flex-start",
-    "& form": {
-      width: "100%",
-    },
-    "& .custom-input, & .custom-select": {
-      marginBlock: "15px",
-    },
-    "& button": {
-      width: "100%",
-      padding: "10px",
-      fontSize: "12px",
-    },
-  },
-}));

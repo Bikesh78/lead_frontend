@@ -50,5 +50,5 @@ export const {
   useUpdateLeadMutation,
   useDeleteLeadMutation,
   useGetLeadPerSourceQuery,
-  useLazyGetLeadPerStatusQuery,
+  useGetLeadPerStatusQuery,
 } = leadApi;
