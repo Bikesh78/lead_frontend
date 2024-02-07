@@ -11,9 +11,8 @@ import CallOutlinedIcon from "@mui/icons-material/CallOutlined";
 import AssignmentOutlinedIcon from "@mui/icons-material/AssignmentOutlined";
 
 const SIDEBAR_ARRAY = [
-  { label: "Home", url: "/" },
-  { label: "Lead", url: "/lead" },
-  { label: "Interaction", url: "/interaction" },
+  { label: "Lead", url: "/" },
+  // { label: "Lead", url: "/lead" },
   { label: "Overview", url: "/overview" },
 ];
 

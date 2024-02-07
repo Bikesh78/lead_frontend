@@ -10,7 +10,7 @@ const RouteList = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<ProtectedRoutes />}>
-          <Route path="/lead" element={<Lead />} />
+          <Route path="/" element={<Lead />} />
           <Route path="/interaction" element={<Interaction />} />
           <Route path="/overview" element={<Overview />} />
         </Route>
