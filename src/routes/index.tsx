@@ -3,6 +3,7 @@ import ProtectedRoutes from "./ProtectedRoutes";
 import Login from "../pages/login";
 import Lead from "../pages/lead";
 import Interaction from "../pages/interaction";
+import Overview from "../pages/overview";
 
 const RouteList = () => {
   return (
@@ -11,6 +12,7 @@ const RouteList = () => {
         <Route path="/" element={<ProtectedRoutes />}>
           <Route path="/lead" element={<Lead />} />
           <Route path="/interaction" element={<Interaction />} />
+          <Route path="/overview" element={<Overview />} />
         </Route>
         <Route path="/login" element={<Login />} />
       </Routes>

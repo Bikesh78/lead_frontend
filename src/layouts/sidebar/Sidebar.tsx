@@ -14,6 +14,7 @@ const SIDEBAR_ARRAY = [
   { label: "Home", url: "/" },
   { label: "Lead", url: "/lead" },
   { label: "Interaction", url: "/interaction" },
+  { label: "Overview", url: "/overview" },
 ];
 
 const Sidebar = () => {
@@ -72,6 +73,7 @@ function getIcon(label: string) {
     case "Home":
       return <HomeOutlinedIcon />;
     case "Lead":
+    case "Overview":
       return <AssignmentOutlinedIcon />;
     case "Interaction":
       return <CallOutlinedIcon />;

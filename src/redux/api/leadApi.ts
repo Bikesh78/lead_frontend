@@ -33,6 +33,14 @@ export const leadApi = createApi({
       }),
       invalidatesTags: (res, error) => (error ? [] : ["Leads"]),
     }),
+    getLeadPerSource: builder.query({
+      query: () => `/api/lead/lead-per-source`,
+      providesTags: ["Leads"],
+    }),
+    getLeadPerStatus: builder.query({
+      query: () => `/api/lead//lead-per-status`,
+      providesTags: ["Leads"],
+    }),
   }),
 });
 
@@ -41,4 +49,6 @@ export const {
   usePostLeadsMutation,
   useUpdateLeadMutation,
   useDeleteLeadMutation,
+  useGetLeadPerSourceQuery,
+  useLazyGetLeadPerStatusQuery,
 } = leadApi;
