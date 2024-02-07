@@ -4,6 +4,7 @@ import Login from "../pages/login";
 import Lead from "../pages/lead";
 import Interaction from "../pages/interaction";
 import Overview from "../pages/overview";
+import SignUp from "../pages/signUp";
 
 const RouteList = () => {
   return (
@@ -15,6 +16,7 @@ const RouteList = () => {
           <Route path="/overview" element={<Overview />} />
         </Route>
         <Route path="/login" element={<Login />} />
+        <Route path="/sign-up" element={<SignUp />} />
       </Routes>
     </BrowserRouter>
   );

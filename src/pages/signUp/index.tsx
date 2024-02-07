@@ -6,14 +6,19 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import { CustomInput } from "../../components/ui/CustomInput";
-import { setLoginStatus, useLoginMutation } from "../../redux/api/authApi";
+import {
+  setLoginStatus,
+  useLoginMutation,
+  useSignUpMutation,
+} from "../../redux/api/authApi";
 import { useDispatch } from "react-redux";
 import { makeStyles } from "@mui/styles";
-import { failureToast } from "../../components/ui/Toast";
+import { failureToast, infoToast } from "../../components/ui/Toast";
 
 interface LoginType {
   email: string;
   password: string;
+  confirm_password: string;
 }
 
 const formValidator = yup.object({
@@ -22,40 +27,55 @@ const formValidator = yup.object({
     .email("Email must be valid")
     .required("Email is required"),
   password: yup.string().required("Password is required"),
+  confirm_password: yup
+    .string()
+    .required("Confirm Passsword is required")
+    .test(
+      "confirm_password",
+      "Passwords do not match",
+      function (value, testContext) {
+        const { password } = testContext.parent;
+        if (password !== value) {
+          return false;
+        }
+        return true;
+      },
+    ),
 });
 
 const defaultValues: LoginType = {
   email: "",
   password: "",
+  confirm_password: "",
 };
 
-const Login = () => {
+const SignUp = () => {
   const {
     handleSubmit,
     formState: { errors },
     control,
   } = useForm({
-    mode: "onBlur",
     defaultValues,
     resolver: yupResolver(formValidator),
   });
-  const [postLogin, { isLoading }] = useLoginMutation();
+  const [signUp, { isLoading }] = useSignUpMutation();
   const dispatch = useDispatch();
   const styles = useStyles();
 
   const navigate = useNavigate();
 
+  console.log("errors", errors);
   const submitHandler = (data: LoginType) => {
     const payload = {
       username: data.email,
       password: data.password,
+      confirm_password: data.confirm_password,
     };
 
-    postLogin(payload)
+    signUp(payload)
       .unwrap()
       .then((res) => {
-        localStorage.setItem("lead_access_token", res?.token);
-        dispatch(setLoginStatus(true));
+        infoToast("Account created successfully");
         navigate("/");
       })
       .catch((error) => {
@@ -82,7 +102,7 @@ const Login = () => {
             fontWeight: "500",
           }}
         >
-          Sign In
+          Sign Up
         </Typography>
         <Box className={styles.formContainer}>
           <form onSubmit={handleSubmit(submitHandler)}>
@@ -103,12 +123,21 @@ const Login = () => {
               required
             />
 
+            <CustomInput
+              name="confirm_password"
+              placeholder="Confirm Password"
+              type="password"
+              control={control}
+              error={errors?.confirm_password?.message}
+              required
+            />
+
             <Box sx={{ marginTop: "25px" }}>
               <Button variant="contained" type="submit">
                 {isLoading ? (
                   <CircularProgress color="inherit" size={24} />
                 ) : (
-                  "Sign In"
+                  "Sign Up"
                 )}
               </Button>
             </Box>
@@ -170,4 +199,4 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default Login;
+export default SignUp;
